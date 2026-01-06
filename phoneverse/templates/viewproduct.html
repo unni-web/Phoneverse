@@ -5,53 +5,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>View Products</title>
-  <link rel="stylesheet" href="{% static 'css/viewproduct.css' %}">
+  <title>View Products | Phoneverse</title>
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 </head>
 
 <body>
-  <div class="nav">
-    <nav class="first_nav">
-      <h2>Phoneverse</h2>
-      <ul class="nav-links">
-        <li class="dropdown">
-          <a href="" class="dropbtn">Manage Product</a>
-          <div class="dropdown-content">
-            <a href="../addproduct/">Add Pet</a>
-            <a href="../viewproduct/">View Pet</a>
-          </div>
-        </li>
-        <li><a href="">Orders</a></li>
-        <li><a href="">Stock</a></li>
-      </ul>
-      <a href="../adminpage/"><button class="logout">Go back</button></a>
-    </nav>
-  </div>
-
-  <div class="product-container">
-    {% for i in products %}
-    <div class="product-card">
-      {% if i.phone_image %}
-      <img src="{{ i.phone_image.url }}" alt="{{ i.name }}">
-      {% else %}
-      <img src="{% static 'media/default_pet.jpg' %}" alt="No Image" width="150" height="150">
-      {% endif %}
-
-      <h3>{{ i.name }}</h3>
-      <p><strong>Category:</strong> {{ i.category }}</p>
-      <p>{{ i.description }}</p>
-      <p class="price">₹{{ i.phone_price }}</p>
-
-
-      <div class="button-group">
-        <a href="{% url 'update' i.pk %}" class="btn update-btn">Update</a>
-        <a href="{% url 'delete' i.pk %}" class="btn delete-btn">Delete</a>
+  <header class="hero">
+    <div class="nav">
+      <div class="brand">
+        <img class="logo-img" src="{% static 'images/logo-phoneverse.svg' %}" alt="Phoneverse logo">
+      </div>
+      <div class="links">
+        <a href="../adminpage/">Admin</a>
+        <a href="../addproduct/">Add phone</a>
+        <a href="../">Storefront</a>
       </div>
     </div>
-    {% empty %}
-    <p style="text-align:center;">No products available.</p>
-    {% endfor %}
-  </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="pill-ghost">Inventory</div>
+        <h1>Manage phone listings</h1>
+        <p class="lede">Update, delete, or review every listing from one place.</p>
+        <div class="hero-actions">
+          <a href="../addproduct/" class="btn primary">Add phone</a>
+          <a href="../adminpage/" class="btn secondary">Admin home</a>
+        </div>
+      </div>
+      <div class="hero-showcase">
+        <div class="hero-card glass">
+          <p class="eyebrow">Tips</p>
+          <p class="muted">Keep photos clear, disclose battery health, and mark grades honestly.</p>
+          <div class="stat-row">
+            <div><strong>✔</strong><span>Verified</span></div>
+            <div><strong>HQ</strong><span>Photos</span></div>
+            <div><strong>Fast</strong><span>Updates</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">All listings</p>
+        <h2>Products</h2>
+        <p class="subhead">Edit or remove devices as needed.</p>
+      </div>
+      <a class="btn ghost" href="../addproduct/">Add new</a>
+    </div>
+
+    <div class="product-grid">
+      {% for i in products %}
+      <div class="card product">
+        <div class="product-img">
+          {% if i.phone_image %}
+          <img src="{{ i.phone_image.url }}" alt="{{ i.name }}">
+          {% else %}
+          <img src="{% static 'media/default_pet.jpg' %}" alt="No Image">
+          {% endif %}
+          <div class="grade-pill">{{ i.category }}</div>
+        </div>
+        <div class="product-body">
+          <div>
+            <h3>{{ i.name }}</h3>
+            <p class="muted">{{ i.description }}</p>
+          </div>
+          <div class="product-footer">
+            <div class="price">₹{{ i.phone_price }}</div>
+            <div class="d-flex gap-2">
+              <a href="{% url 'update' i.pk %}" class="btn secondary">Update</a>
+              <a href="{% url 'delete' i.pk %}" class="btn ghost">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p class="empty-state">No products available.</p>
+      {% endfor %}
+    </div>
+  </section>
 </body>
 
 </html>

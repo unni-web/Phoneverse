@@ -6,27 +6,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{%   static 'css/addproduct.css' %}">
+    <title>Add Product | Phoneverse</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 </head>
 
 <body>
-    <form action="../addproduct/" method="post" enctype="multipart/form-data">
-        {%csrf_token%}
+    <header class="hero">
+        <div class="nav">
+            <div class="brand">
+                <img class="logo-img" src="{% static 'images/logo-phoneverse.svg' %}" alt="Phoneverse logo">
+            </div>
+            <div class="links">
+                <a href="../adminpage/">Admin</a>
+                <a href="../viewproduct/">View phones</a>
+            </div>
+        </div>
 
-        <select name="category" id="">
-            <option value="" selected disabled> ---select category---</option>
-            <option value="iphone">iphone</option>
-            <option value="samsung">samsung</option>
-            <option value="pixel">pixel</option>
-        </select><br>
-        <input type="text" name="name" id="" placeholder="name">
-        <input type="text" name="description" id="" placeholder="descriptin" required><br>
-        <input type="number" name="phone_price" id="" placeholder="enter price" required><br>
-        <input type="file" name="phone_image" id="" accept="/image*" required><br>
-        <input type="submit" value="submit">
-
-    </form>
+        <div class="hero-grid">
+            <div class="hero-copy">
+                <div class="pill-ghost">Add listing</div>
+                <h1>Add a new phone</h1>
+                <p class="lede">Create a certified listing with category, photos, and transparent pricing.</p>
+                <div class="chips">
+                    <span>Accurate grading</span>
+                    <span>Quality photos</span>
+                    <span>Fast publish</span>
+                </div>
+            </div>
+            <div class="hero-showcase">
+                <div class="card product" style="padding:20px;">
+                    <h3>New phone details</h3>
+                    <form action="../addproduct/" method="post" enctype="multipart/form-data" class="d-grid gap-3">
+                        {% csrf_token %}
+                        <select class="form-select" name="category" required>
+                            <option value="" selected disabled>Choose category</option>
+                            <option value="iphone">iPhone</option>
+                            <option value="samsung">Samsung</option>
+                            <option value="pixel">Pixel</option>
+                        </select>
+                        <input class="form-control" type="text" name="name" placeholder="Phone name" required>
+                        <textarea class="form-control" name="description" rows="3" placeholder="Description" required></textarea>
+                        <input class="form-control" type="number" name="phone_price" placeholder="Price (₹)" required>
+                        <input class="form-control" type="file" name="phone_image" accept="image/*" required>
+                        <button type="submit" class="btn primary">Publish</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
 </body>
 
 </html>

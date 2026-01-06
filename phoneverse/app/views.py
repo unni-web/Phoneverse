@@ -110,8 +110,24 @@ def logoutuser(request):
 def index(request):
     if request.user.is_authenticated:
         products = phonedetails.objects.all()
+        
+        cart_items = Cart.objects.filter(user=request.user)
+        cart_count = cart_items.count()
 
-        return render(request,'index.html',{'products': products})
+        cart_total = 0
+        for item in cart_items:
+            cart_total += item.product.phone_price * item.quantity
+
+        return render(
+            request,
+            'index.html',
+            {
+                'products': products,
+                'cart_count': cart_count,
+                'cart_total': cart_total
+            }
+        )
+
     else:
         return redirect(loginuser)
 
@@ -168,10 +184,38 @@ def cart_view(request):
     if request.method == "POST":
         delete_id = request.POST.get("delete_id")
         if delete_id:
-            Cart.objects.filter(id=delete_id).delete()
+            Cart.objects.filter(
+                id=delete_id,
+                user=request.user   # 🔒 secure
+            ).delete()
             return redirect('cart_view')
 
-    # Show cart items
-    cart_items = Cart.objects.filter(user_id=user_id)
-    return render(request, 'cart.html', {'cart_items': cart_items})
+    cart_items = Cart.objects.filter(user=request.user)
+
+    total = 0
+    for item in cart_items:
+        total += item.product.phone_price * item.quantity
+
+    return render(
+        request,
+        'cart.html',
+        {
+            'cart_items': cart_items,
+            'total': total
+        }
+    )
+
+
+
+def purchase(request):
+    cart_items = Cart.objects.filter(user=request.user)
+
+    if not cart_items.exists():
+        messages.error(request, "Your cart is empty")
+        return redirect('cart_view')
+
+    total = sum(item.product.phone_price * item.quantity for item in cart_items)
+
+    
+    return redirect(cart_view)
 

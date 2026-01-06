@@ -243,7 +243,7 @@ body.theme-pixel {
 }
 
 .btn.primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    background-color: #7ed2f9;
     color: #fff;
     box-shadow: 0 10px 26px rgba(29, 78, 216, 0.25);
 }
@@ -380,12 +380,12 @@ body.theme-pixel {
     position: absolute;
     top: 14px;
     left: 14px;
-    padding: 8px 12px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid var(--border);
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: rgba(2, 2, 2, 0.3);
+    /* border: 1px solid var(--border); */
     font-weight: 700;
-    color: var(--accent);
+    color: #7ed2f9
 }
 
 .product-body {

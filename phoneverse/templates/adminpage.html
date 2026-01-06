@@ -4,26 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page</title>
-    <link rel="stylesheet" href="{% static 'css/adminpage.css' %}">
+    <title>Admin | Phoneverse</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 </head>
 <body>
-  <div class="nav">
-    <nav class="first_nav">
-      <img src="{% static 'image/logo.png' %}" alt="PetMart Logo">
-      <ul class="nav-links">
-        <li class="dropdown">
-          <a href="" class="dropbtn">Manage Product</a>
-          <div class="dropdown-content">
-            <a href="../addproduct/">Add Phone</a>
-            <a href="../viewproduct/">View Phone</a>
+  <header class="hero">
+    <div class="nav">
+      <div class="brand">
+        <img class="logo-img" src="{% static 'images/logo-phoneverse.svg' %}" alt="Phoneverse logo">
+      </div>
+      <div class="links">
+        <a href="../">Home</a>
+        <a href="../logout/">Logout</a>
+      </div>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="pill-ghost">Admin console</div>
+        <h1>Manage inventory & listings</h1>
+        <p class="lede">Add new devices, review listings, and keep stock fresh for shoppers.</p>
+        <div class="hero-actions">
+          <a href="../addproduct/" class="btn primary">Add phone</a>
+          <a href="../viewproduct/" class="btn secondary">View phones</a>
+        </div>
+        <div class="chips">
+          <span>Fast updates</span>
+          <span>Inventory control</span>
+          <span>Trusted listings</span>
+        </div>
+      </div>
+      <div class="hero-showcase">
+        <div class="hero-card glass">
+          <p class="eyebrow">Shortcuts</p>
+          <div class="stat-row">
+            <div><strong>+</strong><span>Add product</span></div>
+            <div><strong>👁</strong><span>Review list</span></div>
+            <div><strong>✔</strong><span>Quality check</span></div>
           </div>
-        </li>
-        <li><a href="">Orders</a></li>
-        <li><a href="">Stock</a></li>
-      </ul>
-      <button class="logout">Logout</button>
-    </nav>
-  </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Admin actions</p>
+        <h2>Quick links</h2>
+        <p class="subhead">Jump to common tasks.</p>
+      </div>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card">
+        <h4>Add phone</h4>
+        <p class="muted">Create a new listing with price, photos, and specs.</p>
+        <a class="text-link" href="../addproduct/">Go to add phone →</a>
+      </div>
+      <div class="brand-card">
+        <h4>View phones</h4>
+        <p class="muted">Update, delete, or review existing listings.</p>
+        <a class="text-link" href="../viewproduct/">Manage listings →</a>
+      </div>
+      <div class="brand-card">
+        <h4>Back to shop</h4>
+        <p class="muted">See how customers view the catalog.</p>
+        <a class="text-link" href="../">View storefront →</a>
+      </div>
+    </div>
+  </section>
 </body>
 </html>

@@ -42,7 +42,9 @@ urlpatterns = [
     path('delete/<int:pk>', views.viewproductdelet, name='delete'),
     path('category/<str:category>/', views.category_view, name='category'),
     path('category/<str:category>/', views.category_view_samsung, name='category'),
-    path('category/<str:category>/', views.category_view_pixel, name='category')
+    path('category/<str:category>/', views.category_view_pixel, name='category'),
+    path('purchase/', views.purchase, name='purchase'),
+
 ]
 
 

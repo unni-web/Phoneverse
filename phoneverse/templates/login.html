@@ -3,25 +3,50 @@
 
 <head>
     {% load static %}
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-        <link rel="stylesheet" href="{% static 'css/login.css' %}">
-
+    <title>Login | Phoneverse</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 </head>
 
 <body>
-    <h1>login</h1>
-    <form action="../login/" method="POST">
-        {% csrf_token %}
-        <table>
-            <input type="text" name="username" id="" placeholder="Username">
-            <input type="password" name="password" id="" placeholder="Password">
-            <input type="submit" value="SUBMIT">
-        </table>
-        <a href="../register/">register here</a>
-    </form>
+    <header class="hero">
+        <div class="nav">
+            <div class="brand">
+                <img class="logo-img" src="{% static 'images/logo-phoneverse.svg' %}" alt="Phoneverse logo">
+            </div>
+            <div class="links">
+                <a href="../">Home</a>
+                <a href="../register/">Register</a>
+            </div>
+        </div>
+
+        <div class="hero-grid">
+            <div class="hero-copy">
+                <div class="pill-ghost">Welcome back</div>
+                <h1>Sign in to Phoneverse</h1>
+                <p class="lede">Access your saved devices, fast checkout, and order updates.</p>
+                <div class="chips">
+                    <span>Secure login</span>
+                    <span>Fast checkout</span>
+                    <span>Priority support</span>
+                </div>
+            </div>
+            <div class="hero-showcase">
+                <div class="card product" style="padding:20px;">
+                    <h3>Login</h3>
+                    <form action="../login/" method="POST" class="d-grid gap-3">
+                        {% csrf_token %}
+                        <input class="form-control" type="text" name="username" placeholder="Username" required>
+                        <input class="form-control" type="password" name="password" placeholder="Password" required>
+                        <button type="submit" class="btn primary">Sign in</button>
+                    </form>
+                    <p class="muted" style="margin-top:12px;">New here? <a class="text-link" href="../register/">Create an account →</a></p>
+                </div>
+            </div>
+        </div>
+    </header>
 </body>
 
 </html>
