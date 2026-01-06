@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phoneverse | Premium Pre-loved Phones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+  <header class="hero">
+    <div class="nav">
+      <div class="brand">
+        <img class="logo-img" src="{% static 'images/logo-phoneverse.svg' %}" alt="Phoneverse logo">
+      </div>
+      <div class="links">
+        <a href="">Home</a>
+        <a href="../cart/">Cart</a>
+        <a href="../account/">Account</a>
+      </div>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="pill-ghost">Premium · Verified · Ready</div>
+        <h1>Find your next flagship without the flagship price.</h1>
+        <p class="lede">Transparent grading, fast dispatch, and honest pricing on the phones you actually want.</p>
+        <div class="hero-actions">
+          <a href="#exclusive" class="btn primary">Shop featured</a>
+          <a href="#explore" class="btn secondary">Browse by brand</a>
+        </div>
+        <div class="chips">
+          <span>6-month protection</span>
+          <span>Battery health disclosed</span>
+          <span>48h metro shipping</span>
+        </div>
+      </div>
+      <div class="hero-showcase">
+        <div class="hero-card glass">
+          <p class="eyebrow">Top pick</p>
+          <h3>Flagship refresh</h3>
+          <p class="muted">Save up to 40% vs new</p>
+          <div class="stat-row">
+            <div><strong>9.4</strong><span>rating</span></div>
+            <div><strong>42pt</strong><span>inspection</span></div>
+            <div><strong>48h</strong><span>dispatch</span></div>
+          </div>
+        </div>
+        <div class="device-frame">
+          <img src="{% static 'images/iPhone-17-Pro-Max-Artwork-PNG-1.png'%}" alt="Showcase phone">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="strip">
+    <div class="strip-card">
+      <h4>42-point check</h4>
+      <p>Battery, camera, audio, sensors, cosmetics.</p>
+    </div>
+    <div class="strip-card">
+      <h4>Real grading</h4>
+      <p>A/B/C with photos and battery health %.</p>
+    </div>
+    <div class="strip-card">
+      <h4>Fast shipping</h4>
+      <p>Dispatched in 48h with live tracking.</p>
+    </div>
+  </section>
+
+  <section class="section" id="explore">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Shop by brand</p>
+        <h2>Pick your ecosystem</h2>
+        <p class="subhead">Quick links to the categories people love.</p>
+      </div>
+      <div class="category-chips">
+        <a href="{% url 'category' 'iphone' %}">iPhone</a>
+        <a href="{% url 'category' 'samsung' %}">Samsung</a>
+        <a href="{% url 'category' 'pixel' %}">Pixel</a>
+      </div>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card">
+        <img src="{% static 'images/iPhone-17-Pro-Max-Artwork-PNG-1.png'%}" alt="iPhone">
+        <div>
+          <h4>iPhone</h4>
+          <p class="muted">Best-in-class cameras and ecosystem perks.</p>
+        </div>
+        <a class="text-link" href="{% url 'category' 'iphone' %}">Shop iPhone →</a>
+      </div>
+      <div class="brand-card">
+        <img src="{% static 'images/s24.png'%}" alt="Samsung">
+        <div>
+          <h4>Samsung</h4>
+          <p class="muted">Bold displays, pro zoom, and S-pen options.</p>
+        </div>
+        <a class="text-link" href="{% url 'category' 'samsung' %}">Shop Samsung →</a>
+      </div>
+      <div class="brand-card">
+        <img src="https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/q/t/o/-original-imahfjsfbqn7hhxy.jpeg?q=70&crop=false" alt="Pixel">
+        <div>
+          <h4>Pixel</h4>
+          <p class="muted">Clean Android with the best night sight.</p>
+        </div>
+        <a class="text-link" href="{% url 'category' 'pixel' %}">Shop Pixel →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="exclusive">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Featured</p>
+        <h2>Ready to ship</h2>
+        <p class="subhead">Curated, inspected, and priced to impress.</p>
+      </div>
+      <a href="../cart/" class="btn ghost">View cart</a>
+    </div>
+    <div class="product-grid">
+      {% for i in products %}
+      <div class="card product">
+        <div class="product-img">
+          {% if i.phone_image %}
+          <img src="{{ i.phone_image.url }}" alt="{{ i.name }}">
+          {% else %}
+          <img src="{% static 'media/default_pet.jpg' %}" alt="No Image">
+          {% endif %}
+          <div class="grade-pill">{{ i.category }}</div>
+        </div>
+        <div class="product-body">
+          <div>
+            <h3>{{ i.name }}</h3>
+            <p class="muted">{{ i.description }}</p>
+          </div>
+          <div class="product-footer">
+            <div class="price">₹{{ i.phone_price }}</div>
+            <a href="{% url 'addtocart' i.id %}" class="btn primary">Add to cart</a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p class="empty-state">No products available.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-card">
+      <div>
+        <p class="eyebrow">Need help deciding?</p>
+        <h2>Talk to a specialist and get a curated pick.</h2>
+        <p class="muted">We’ll suggest the best battery health, storage, and carrier fit for you.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="../account/" class="btn primary">Go to account</a>
+        <a href="#exclusive" class="btn secondary">See highlights</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>

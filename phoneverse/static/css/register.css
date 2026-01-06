@@ -1,0 +1,97 @@
+/* register.css */
+
+/* Reset defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Page background */
+body {
+    height: 100vh;
+    background-color: #f1f8e9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Registration form container */
+form {
+    background-color: #2e7d32;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Input focus effect */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    background-color: #e8f5e9;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+}
+
+/* Submit button */
+input[type="submit"] {
+    background-color: #66bb6a;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #43a047;
+}
+
+/* Link styling */
+a {
+    text-align: center;
+    color: #c8e6c9;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    form {
+        padding: 30px 20px;
+    }
+
+    input {
+        font-size: 14px;
+    }
+
+    input[type="submit"] {
+        font-size: 14px;
+    }
+}

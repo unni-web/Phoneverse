@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+</head>
+
+<body>
+    <div class="nav">
+        <div class="left">
+            <h2>Phoneverse</h2>
+        </div>
+        <div class="right">
+            <a href="../">Home</a>
+            <a href="">Cart</a>
+            <a href="../account">Account</a>
+        </div>
+    </div>
+
+        <h2>Your Cart</h2>
+
+
+
+<div class="card-container">
+    {% for item in cart_items %}
+    <div class="card">
+        <img src="{{ item.product.phone_image.url }}" alt="{{ item.product.name }}">
+        <h3>{{ item.product.name }}</h3>
+        <p>{{ item.product.description }}</p>
+        <p>Price: ₹{{ item.product.phone_price }}</p>
+        <p>Quantity: {{ item.quantity }}</p>
+
+        <form method="post" action="">
+            {% csrf_token %}
+            <input type="hidden" name="delete_id" value="{{ item.id }}">
+            <button type="submit" style="background-color: red; color: white; border: 0; border-radius: 5px; padding: 5px;">Remove</button>
+        </form>
+    </div>
+    {% empty %}
+    <p>No items in your cart.</p>
+    {% endfor %}
+</div>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{%   static 'css/addproduct.css' %}">
+</head>
+
+<body>
+    <form action="../addproduct/" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+
+        <select name="category" id="">
+            <option value="" selected disabled> ---select category---</option>
+            <option value="iphone">iphone</option>
+            <option value="samsung">samsung</option>
+            <option value="pixel">pixel</option>
+        </select><br>
+        <input type="text" name="name" id="" placeholder="name">
+        <input type="text" name="description" id="" placeholder="descriptin" required><br>
+        <input type="number" name="phone_price" id="" placeholder="enter price" required><br>
+        <input type="file" name="phone_image" id="" accept="/image*" required><br>
+        <input type="submit" value="submit">
+
+    </form>
+</body>
+
+</html>

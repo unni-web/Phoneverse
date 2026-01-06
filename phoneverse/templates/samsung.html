@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category|title }} | Phoneverse</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+
+<body class="theme-samsung">
+    <header class="hero">
+        <div class="nav">
+            <div class="brand">
+                <img class="logo-img" src="{% static 'images/logo-phoneverse.svg' %}" alt="Phoneverse logo">
+            </div>
+            <div class="links">
+                <a href="../">Home</a>
+                <a href="../cart/">Cart</a>
+                <a href="../account/">Account</a>
+            </div>
+        </div>
+
+        <div class="hero-grid">
+            <div class="hero-copy">
+                <div class="pill-ghost">Samsung certified</div>
+                <h1>{{ category|title }} collection</h1>
+                <p class="lede">AMOLED brilliance, pro zoom, and S-Pen ready devices—fully inspected and graded.</p>
+                <div class="hero-actions">
+                    <a href="#products" class="btn primary">Shop {{ category|title }}</a>
+                    <a href="../cart/" class="btn secondary">View cart</a>
+                </div>
+                <div class="chips">
+                    <span>6-month protection</span>
+                    <span>Battery health shown</span>
+                    <span>48h metro shipping</span>
+                </div>
+            </div>
+            <div class="hero-showcase">
+                <div class="hero-card glass">
+                    <p class="eyebrow">Top pick</p>
+                    <h3>Pro camera stack</h3>
+                    <p class="muted">Up to 40% less than new</p>
+                    <div class="stat-row">
+                        <div><strong>9.4</strong><span>rating</span></div>
+                        <div><strong>42pt</strong><span>inspection</span></div>
+                        <div><strong>48h</strong><span>dispatch</span></div>
+                    </div>
+                </div>
+                <div class="device-frame">
+                    <img src="{% static 'images/s24.png'%}" alt="{{ category|title }} hero">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section" id="products">
+        <div class="section-head">
+            <div>
+                <p class="eyebrow">Available now</p>
+                <h2>{{ category|title }} phones</h2>
+                <p class="subhead">Inspected, graded, and ready to ship.</p>
+            </div>
+            <a href="../" class="btn ghost">Back to home</a>
+        </div>
+        <div class="product-grid">
+            {% for phone in phones %}
+            <div class="card product">
+                <div class="product-img">
+                    {% if phone.phone_image %}
+                    <img src="{{ phone.phone_image.url }}" alt="{{ phone.name }}">
+                    {% else %}
+                    <img src="{% static 'media/default_pet.jpg' %}" alt="No Image">
+                    {% endif %}
+                    <div class="grade-pill">{{ phone.category }}</div>
+                </div>
+                <div class="product-body">
+                    <div>
+                        <h3>{{ phone.name }}</h3>
+                        <p class="muted">{{ phone.description }}</p>
+                    </div>
+                    <div class="product-footer">
+                        <div class="price">₹{{ phone.phone_price }}</div>
+                        <a href="{% url 'addtocart' phone.id %}" class="btn primary">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="empty-state">No phones found in this category.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+</body>
+
+</html>

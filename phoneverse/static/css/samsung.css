@@ -1,0 +1,116 @@
+body {
+    margin: 0;
+    background-color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+
+}
+
+.nav {
+    height: 50px;
+    width: 100%;
+    background-color: #2e7d32;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav .left {
+    /* background-color: blue; */
+    height: 100%;
+    width: 400px;
+    display: flex;
+    align-items: center;
+}
+
+.left h2 {
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: auto;
+}
+
+.nav .right {
+    /* background-color: blue; */
+    height: 100%;
+    width: 400px;
+    display: flex;
+    align-items: center;
+
+}
+
+.right a {
+    color: white;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-decoration: none;
+    margin: auto;
+}
+
+
+/* Container for Product Cards */
+.card-container {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 50px;
+    justify-items: center;
+    padding: 20px;
+}
+
+/* Single Product Card */
+.card {
+    width: 320px;
+    height: 400px;
+    max-width: 320px;
+    background: #f1f8e9;
+    border-radius: 15px;
+    border: 1px solid #2e7d32;
+    text-align: center;
+    padding-top: 20px;
+    transition: 0.3s ease;
+}
+
+/* Card Hover Effect */
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(46, 125, 50, 0.4);
+}
+
+/* Product Image */
+.card img {
+    width: 250px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #333;
+}
+
+/* Product Title */
+.card h3 {
+    font-size: 1.25rem;
+    color: #2e7d32;
+    margin-bottom: 8px;
+}
+
+/* Product Description */
+.card p {
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+/* Price text */
+.card p:last-child {
+    font-weight: 600;
+    color: black;
+    font-size: 1.1rem;
+}
+
+/* Category Title */
+h2 {
+    text-align: center;
+    margin-top: 30px;
+    color: #2e7d32;
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
